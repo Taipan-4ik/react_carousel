@@ -31,7 +31,9 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       {/* eslint-disable-next-line */}
-      <h1 className="App__title" data-cy="title">Carousel with {state.images.length} images</h1>
+      <h1 className="App__title" data-cy="title">
+        Carousel with {state.images.length} images
+      </h1>
 
       <Carousel
         images={state.images}

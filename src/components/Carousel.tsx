@@ -65,6 +65,7 @@ export const Carousel: React.FC<Props> = ({
 
         <button
           type="button"
+          data-cy="next"
           onClick={() => {
             const carouselList = document.querySelector(
               '.Carousel__list',
