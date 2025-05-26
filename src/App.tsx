@@ -24,14 +24,14 @@ export const App: React.FC = () => {
 
   const [imageWidth, setImageWidth] = useState(130);
   const [frameSize, setFrameSize] = useState(3);
-  const [currentOrder, setCurrentOrder] = useState(state.images);
   const [currentStep, setCurrentStep] = useState(3);
   const [currentDuration, setCurrentDuration] = useState(1000);
+  const [currentPosition, SetCurrentPosition] = useState(0);
 
   return (
     <div className="App">
       {/* eslint-disable-next-line */}
-      <h1>Carousel with {state.images.length} images</h1>
+      <h1 className="App__title" data-cy="title">Carousel with {state.images.length} images</h1>
 
       <Carousel
         images={state.images}
@@ -39,12 +39,12 @@ export const App: React.FC = () => {
         newImageWidth={setImageWidth}
         frameSize={frameSize}
         newFrameSize={setFrameSize}
-        currentOrder={currentOrder}
-        newOrder={setCurrentOrder}
         currentStep={currentStep}
         newStep={setCurrentStep}
         animationSpeed={currentDuration}
         newSpeed={setCurrentDuration}
+        currentPosition={currentPosition}
+        newPosition={SetCurrentPosition}
       />
     </div>
   );
