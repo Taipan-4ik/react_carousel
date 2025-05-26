@@ -77,16 +77,20 @@ export const Carousel: React.FC<Props> = ({
           type="button"
           data-cy="next"
           onClick={() => {
-            const maxNegative = -((images.length - frameSize) * imageWidth);
-            const stepPx = currentStep * imageWidth;
+            if (images.length <= frameSize) {
+              newPosition(0);
+            } else {
+              const maxNegative = -((images.length - frameSize) * imageWidth);
+              const stepPx = currentStep * imageWidth;
 
-            let nextPosition = currentPosition - stepPx;
+              let nextPosition = currentPosition - stepPx;
 
-            if (nextPosition < maxNegative) {
-              nextPosition = maxNegative;
+              if (nextPosition < maxNegative) {
+                nextPosition = maxNegative;
+              }
+
+              newPosition(nextPosition);
             }
-
-            newPosition(nextPosition);
           }}
         >
           Next
