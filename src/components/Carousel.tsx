@@ -47,6 +47,7 @@ export const Carousel: React.FC<Props> = ({
                 src={src}
                 alt={`${index + 1}`}
                 style={{ width: `${imageWidth}px`, height: `${imageWidth}px` }}
+                width={imageWidth}
               />
             </li>
           ))}
@@ -93,10 +94,10 @@ export const Carousel: React.FC<Props> = ({
       </div>
 
       <div className="Carousel__settings">
-        <label htmlFor="imageWidth" className="Carousel__label">
+        <label htmlFor="itemId" className="Carousel__label">
           Image width
           <input
-            id="imageWidth"
+            id="itemId"
             type="number"
             min="50"
             max="300"
@@ -109,10 +110,10 @@ export const Carousel: React.FC<Props> = ({
             }}
           />
         </label>
-        <label htmlFor="frameSize" className="Carousel__label">
+        <label htmlFor="frameId" className="Carousel__label">
           Frame size
           <input
-            id="frameSize"
+            id="frameId"
             type="number"
             min="2"
             max="5"
@@ -124,10 +125,10 @@ export const Carousel: React.FC<Props> = ({
             }}
           />
         </label>
-        <label htmlFor="step" className="Carousel__label">
+        <label htmlFor="stepId" className="Carousel__label">
           Step
           <input
-            id="step"
+            id="stepId"
             type="number"
             min="1"
             max="3"
