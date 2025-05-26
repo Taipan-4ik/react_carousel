@@ -30,11 +30,24 @@ export const Carousel: React.FC<Props> = ({
 }) => {
   return (
     <div className="main">
-      <div className="Carousel">
-        <ul className="Carousel__list">
+      <div
+        className="Carousel"
+        style={{ width: `${frameSize * imageWidth}px` }}
+      >
+        <ul
+          className="Carousel__list"
+          style={{
+            transition: `all ${animationSpeed}ms ease-out`,
+            transform: `translateX(${currentPosition}px)`,
+          }}
+        >
           {images.map((src, index) => (
             <li key={index}>
-              <img src={src} alt={`${index + 1}`} />
+              <img
+                src={src}
+                alt={`${index + 1}`}
+                style={{ width: `${imageWidth}px`, height: `${imageWidth}px` }}
+              />
             </li>
           ))}
         </ul>
@@ -44,11 +57,8 @@ export const Carousel: React.FC<Props> = ({
         <button
           type="button"
           onClick={() => {
-            const carouselList = document.querySelector(
-              '.Carousel__list',
-            ) as HTMLUListElement;
             const maxNegative = 0;
-            const stepPx = currentStep * 130;
+            const stepPx = currentStep * imageWidth;
 
             let nextPosition = currentPosition + stepPx;
 
@@ -57,7 +67,6 @@ export const Carousel: React.FC<Props> = ({
             }
 
             newPosition(nextPosition);
-            carouselList.style.transform = `translateX(${nextPosition}px)`;
           }}
         >
           Prev
@@ -67,11 +76,8 @@ export const Carousel: React.FC<Props> = ({
           type="button"
           data-cy="next"
           onClick={() => {
-            const carouselList = document.querySelector(
-              '.Carousel__list',
-            ) as HTMLUListElement;
-            const maxNegative = -((10 - frameSize) * imageWidth);
-            const stepPx = currentStep * 130;
+            const maxNegative = -((images.length - frameSize) * imageWidth);
+            const stepPx = currentStep * imageWidth;
 
             let nextPosition = currentPosition - stepPx;
 
@@ -80,7 +86,6 @@ export const Carousel: React.FC<Props> = ({
             }
 
             newPosition(nextPosition);
-            carouselList.style.transform = `translateX(${nextPosition}px)`;
           }}
         >
           Next
@@ -101,16 +106,6 @@ export const Carousel: React.FC<Props> = ({
               const newSize = Number(ev.target.value);
 
               newImageWidth(newSize);
-
-              const carousel = document.querySelector('.Carousel');
-              const imgs = carousel?.querySelectorAll('img');
-
-              imgs?.forEach(img => {
-                const picture = img;
-
-                picture.style.width = `${newSize}px`;
-                picture.style.height = `${newSize}px`;
-              });
             }}
           />
         </label>
@@ -126,11 +121,6 @@ export const Carousel: React.FC<Props> = ({
               const newWidth = Number(ev.target.value);
 
               newFrameSize(newWidth);
-              const carousel = document.querySelector(
-                '.Carousel',
-              ) as HTMLDivElement;
-
-              carousel.style.width = `${newWidth * 130}px`;
             }}
           />
         </label>
@@ -160,11 +150,6 @@ export const Carousel: React.FC<Props> = ({
               const newValOfSpeed = Number(ev.target.value);
 
               newSpeed(newValOfSpeed);
-              const carouselList = document.querySelector(
-                '.Carousel__list',
-              ) as HTMLUListElement;
-
-              carouselList.style.transition = `all ${newValOfSpeed}ms ease-out`;
             }}
           />
         </label>
